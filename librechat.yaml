@@ -1,0 +1,392 @@
+# For more information, see the Configuration Guide:
+# https://docs.librechat.ai/install/configuration/custom_config.html
+
+# Configuration version (required)
+version: 1.0.6
+
+# Cache settings: Set to true to enable caching
+cache: true
+
+# Custom interface configuration
+interface:
+  # Privacy policy settings
+  privacyPolicy:
+    externalUrl: 'https://librechat.ai/privacy-policy'
+    openNewTab: true
+
+  # Terms of service
+  termsOfService:
+    externalUrl: 'https://librechat.ai/tos'
+    openNewTab: true
+
+  endpointsMenu: true
+  modelSelect: true
+  parameters: true
+  presets: true
+
+# Example Registration Object Structure (optional)
+registration:
+  socialLogins: ['github', 'google', 'discord', 'openid', 'facebook']
+  # allowedDomains:
+  # - "gmail.com"
+
+# rateLimits:
+#   fileUploads:
+#     ipMax: 100
+#     ipWindowInMinutes: 60  # Rate limit window for file uploads per IP
+#     userMax: 50
+#     userWindowInMinutes: 60  # Rate limit window for file uploads per user
+#   conversationsImport:
+#     ipMax: 100
+#     ipWindowInMinutes: 60  # Rate limit window for conversation imports per IP
+#     userMax: 50
+#     userWindowInMinutes: 60  # Rate limit window for conversation imports per user
+
+# Definition of custom endpoints
+endpoints:
+  # assistants:
+  #   disableBuilder: false # Disable Assistants Builder Interface by setting to `true`
+  #   pollIntervalMs: 750  # Polling interval for checking assistant updates
+  #   timeoutMs: 180000  # Timeout for assistant operations
+  #   # Should only be one or the other, either `supportedIds` or `excludedIds`
+  #   supportedIds: ["asst_supportedAssistantId1", "asst_supportedAssistantId2"]
+  #   # excludedIds: ["asst_excludedAssistantId"]
+  #   # (optional) Models that support retrieval, will default to latest known OpenAI models that support the feature
+  #   retrievalModels: ["gpt-4-turbo-preview"]
+  #   # (optional) Assistant Capabilities available to all users. Omit the ones you wish to exclude. Defaults to list below.
+  #   capabilities: ["code_interpreter", "retrieval", "actions", "tools", "image_vision"]
+  custom:
+    # Groq Example
+    - name: 'groq'
+      # apiKey: '${GROQ_API_KEY}'
+      apiKey: 'user_provided'
+      baseURL: 'https://api.groq.com/openai/v1/'
+      models:
+        default: [
+          "llama3-70b-8192",
+          "llama3-8b-8192",
+          "llama2-70b-4096",
+          "mixtral-8x7b-32768",
+          "gemma-7b-it",
+          ]
+        fetch: true
+      titleConvo: true
+      titleModel: 'mixtral-8x7b-32768'
+      modelDisplayLabel: 'groq'
+
+    # DeepSeek
+    - name: 'deepseek'
+      # apiKey: '${DEEPSEEK_API_KEY}'
+      apiKey: 'user_provided'
+      baseURL: 'https://api.deepseek.com/'
+      models:
+        default: [
+          "deepseek-coder",
+          "deepseek-chat",
+          ]
+        fetch: true
+      titleConvo: true
+      titleModel: 'deepseek-coder'
+      modelDisplayLabel: 'deepseek'
+      iconURL: 'https://chat.deepseek.com/favicon.svg'
+
+    # Custom Workflows
+    - name: 'Custom Workflows With Agents'
+      apiKey: 'not_needed'
+      # apiKey: 'user_provided'
+      baseURL: 'http://192.168.10.3:8000'
+      models:
+        default: [
+          "mock-gpt-model",
+          ]
+        fetch: true
+      titleConvo: false
+      # titleModel: 'mock-gpt-model'
+      # modelDisplayLabel: 'Custom Workflows'
+      # dropParams: ['stop']
+
+    # Mistral AI Example
+    - name: 'Mistral' # Unique name for the endpoint
+      # For `apiKey` and `baseURL`, you can use environment variables that you define.
+      # recommended environment variables:
+      # apiKey: '${MISTRAL_API_KEY}'
+      apiKey: 'user_provided'
+      baseURL: 'https://api.mistral.ai/v1'
+
+      # Models configuration
+      models:
+        # List of default models to use. At least one value is required.
+        default: ['mistral-tiny', 'mistral-small', 'mistral-medium']
+        # Fetch option: Set to true to fetch models from API.
+        fetch: true # Defaults to false.
+
+      # Optional configurations
+
+      # Title Conversation setting
+      titleConvo: true # Set to true to enable title conversation
+
+      # Title Method: Choose between "completion" or "functions".
+      # titleMethod: "completion"  # Defaults to "completion" if omitted.
+
+      # Title Model: Specify the model to use for titles.
+      titleModel: 'mistral-tiny' # Defaults to "gpt-3.5-turbo" if omitted.
+
+      # Summarize setting: Set to true to enable summarization.
+      # summarize: false
+
+      # Summary Model: Specify the model to use if summarization is enabled.
+      # summaryModel: "mistral-tiny"  # Defaults to "gpt-3.5-turbo" if omitted.
+
+      # Force Prompt setting: If true, sends a `prompt` parameter instead of `messages`.
+      # forcePrompt: false
+
+      # The label displayed for the AI model in messages.
+      modelDisplayLabel: 'Mistral' # Default is "AI" when not set.
+
+      # Add additional parameters to the request. Default params will be overwritten.
+      # addParams:
+      # safe_prompt: true # This field is specific to Mistral AI: https://docs.mistral.ai/api/
+
+      # Drop Default params parameters from the request. See default params in guide linked below.
+      # NOTE: For Mistral, it is necessary to drop the following parameters or you will encounter a 422 Error:
+      dropParams: ['stop', 'user', 'frequency_penalty', 'presence_penalty']
+
+    # OpenRouter Example
+    - name: 'OpenRouter'
+      # For `apiKey` and `baseURL`, you can use environment variables that you define.
+      # recommended environment variables:
+      # Known issue: you should not use `OPENROUTER_API_KEY` as it will then override the `openAI` endpoint to use OpenRouter as well.
+      # apiKey: '${OPENROUTER_KEY}'
+      apiKey: 'user_provided'
+      baseURL: 'https://openrouter.ai/api/v1'
+      models:
+      # see `curl https://openrouter.ai/api/v1/models |  jq` for available models
+        default: [
+          "openrouter/auto"
+          ,"nousresearch/nous-capybara-7b:free"
+          ,"mistralai/mistral-7b-instruct:free"
+          ,"openchat/openchat-7b:free"
+          ,"gryphe/mythomist-7b:free"
+          ,"undi95/toppy-m-7b:free"
+          ,"openrouter/cinematika-7b:free"
+          ,"google/gemma-7b-it:free"
+          ,"meta-llama/llama-3-8b-instruct:free"
+          ,"jetmoe/jetmoe-8b-chat:free"
+          ,"koboldai/psyfighter-13b-2"
+          ,"intel/neural-chat-7b"
+          ,"gryphe/mythomax-l2-13b:nitro"
+          ,"pygmalionai/mythalion-13b"
+          ,"xwin-lm/xwin-lm-70b"
+          ,"alpindale/goliath-120b"
+          ,"neversleep/noromaid-20b"
+          ,"gryphe/mythomist-7b"
+          ,"sophosympatheia/midnight-rose-70b"
+          ,"sao10k/fimbulvetr-11b-v2"
+          ,"neversleep/llama-3-lumimaid-8b"
+          ,"undi95/remm-slerp-l2-13b:extended"
+          ,"gryphe/mythomax-l2-13b:extended"
+          ,"meta-llama/llama-3-8b-instruct:extended"
+          ,"neversleep/llama-3-lumimaid-8b:extended"
+          ,"mancer/weaver"
+          ,"nousresearch/nous-capybara-7b"
+          ,"meta-llama/codellama-34b-instruct"
+          ,"codellama/codellama-70b-instruct"
+          ,"phind/phind-codellama-34b"
+          ,"open-orca/mistral-7b-openorca"
+          ,"teknium/openhermes-2-mistral-7b"
+          ,"undi95/remm-slerp-l2-13b"
+          ,"openrouter/cinematika-7b"
+          ,"01-ai/yi-34b-chat"
+          ,"01-ai/yi-34b"
+          ,"01-ai/yi-6b"
+          ,"togethercomputer/stripedhyena-nous-7b"
+          ,"togethercomputer/stripedhyena-hessian-7b"
+          ,"mistralai/mixtral-8x7b"
+          ,"nousresearch/nous-hermes-yi-34b"
+          ,"nousresearch/nous-hermes-2-mixtral-8x7b-sft"
+          ,"nousresearch/nous-hermes-2-mistral-7b-dpo"
+          ,"snowflake/snowflake-arctic-instruct"
+          ,"mistralai/mixtral-8x7b-instruct:nitro"
+          ,"openai/gpt-3.5-turbo"
+          ,"openai/gpt-3.5-turbo-0125"
+          ,"openai/gpt-3.5-turbo-1106"
+          ,"openai/gpt-3.5-turbo-0613"
+          ,"openai/gpt-3.5-turbo-0301"
+          ,"openai/gpt-3.5-turbo-16k"
+          ,"openai/gpt-4-turbo"
+          ,"openai/gpt-4-turbo-preview"
+          ,"openai/gpt-4-1106-preview"
+          ,"openai/gpt-4"
+          ,"openai/gpt-4-0314"
+          ,"openai/gpt-4-32k"
+          ,"openai/gpt-4-32k-0314"
+          ,"openai/gpt-4-vision-preview"
+          ,"openai/gpt-3.5-turbo-instruct"
+          ,"google/palm-2-chat-bison"
+          ,"google/palm-2-codechat-bison"
+          ,"google/palm-2-chat-bison-32k"
+          ,"google/palm-2-codechat-bison-32k"
+          ,"google/gemini-pro"
+          ,"google/gemini-pro-vision"
+          ,"google/gemini-pro-1.5"
+          ,"perplexity/pplx-70b-online"
+          ,"perplexity/pplx-7b-online"
+          ,"perplexity/pplx-7b-chat"
+          ,"perplexity/pplx-70b-chat"
+          ,"perplexity/sonar-small-chat"
+          ,"perplexity/sonar-medium-chat"
+          ,"perplexity/sonar-small-online"
+          ,"perplexity/sonar-medium-online"
+          ,"fireworks/firellava-13b"
+          ,"anthropic/claude-3-opus"
+          ,"anthropic/claude-3-sonnet"
+          ,"anthropic/claude-3-haiku"
+          ,"anthropic/claude-2"
+          ,"anthropic/claude-2.0"
+          ,"anthropic/claude-2.1"
+          ,"anthropic/claude-instant-1"
+          ,"anthropic/claude-3-opus:beta"
+          ,"anthropic/claude-3-sonnet:beta"
+          ,"anthropic/claude-3-haiku:beta"
+          ,"anthropic/claude-2:beta"
+          ,"anthropic/claude-2.0:beta"
+          ,"anthropic/claude-2.1:beta"
+          ,"anthropic/claude-instant-1:beta"
+          ,"meta-llama/llama-2-13b-chat"
+          ,"meta-llama/llama-2-70b-chat"
+          ,"nousresearch/nous-hermes-llama2-13b"
+          ,"nousresearch/nous-capybara-34b"
+          ,"jondurbin/airoboros-l2-70b"
+          ,"jondurbin/bagel-34b"
+          ,"austism/chronos-hermes-13b"
+          ,"mistralai/mistral-7b-instruct"
+          ,"teknium/openhermes-2.5-mistral-7b"
+          ,"gryphe/mythomax-l2-13b"
+          ,"huggingfaceh4/zephyr-7b-beta"
+          ,"openchat/openchat-7b"
+          ,"undi95/toppy-m-7b"
+          ,"lizpreciatior/lzlv-70b-fp16-hf"
+          ,"jebcarter/psyfighter-13b"
+          ,"mistralai/mixtral-8x7b-instruct"
+          ,"cognitivecomputations/dolphin-mixtral-8x7b"
+          ,"neversleep/noromaid-mixtral-8x7b-instruct"
+          ,"nousresearch/nous-hermes-2-mixtral-8x7b-dpo"
+          ,"rwkv/rwkv-5-world-3b"
+          ,"recursal/rwkv-5-3b-ai-town"
+          ,"recursal/eagle-7b"
+          ,"google/gemma-7b-it"
+          ,"databricks/dbrx-instruct"
+          ,"meta-llama/llama-3-8b-instruct"
+          ,"meta-llama/llama-3-70b-instruct"
+          ,"microsoft/wizardlm-2-8x22b"
+          ,"microsoft/wizardlm-2-7b"
+          ,"mistralai/mixtral-8x22b"
+          ,"mistralai/mixtral-8x22b-instruct"
+          ,"lynn/soliloquy-l3"
+          ,"jetmoe/jetmoe-8b-chat"
+          ,"anthropic/claude-1"
+          ,"anthropic/claude-1.2"
+          ,"anthropic/claude-instant-1.0"
+          ,"anthropic/claude-instant-1.1"
+          ,"huggingfaceh4/zephyr-7b-beta:free"
+          ,"meta-llama/llama-2-70b-chat:nitro"
+          ,"mistralai/mistral-7b-instruct:nitro"
+          ,"google/gemma-7b-it:nitro"
+          ,"undi95/toppy-m-7b:nitro"
+          ,"microsoft/wizardlm-2-8x22b:nitro"
+          ,"meta-llama/llama-3-8b-instruct:nitro"
+          ,"meta-llama/llama-3-70b-instruct:nitro"
+          ,"haotian-liu/llava-13b"
+          ,"nousresearch/nous-hermes-2-vision-7b"
+          ,"mistralai/mistral-tiny"
+          ,"mistralai/mistral-small"
+          ,"mistralai/mistral-medium"
+          ,"mistralai/mistral-large"
+          ,"cohere/command"
+          ,"cohere/command-r"
+          ,"cohere/command-r-plus"
+        ]
+        fetch: true
+      titleConvo: true
+      titleModel: 'meta-llama/llama-3-8b-instruct:free'
+      # titleModel: 'meta-llama/llama-3-70b-instruct'
+      # Recommended: Drop the stop parameter from the request as Openrouter models use a variety of stop tokens.
+      dropParams: ['stop']
+      modelDisplayLabel: 'OpenRouter'
+
+modelSpecs:
+  enforce: false
+  prioritize: false
+  list:
+    - name: "mock-gpt-model"
+      label: "Dummy workflow model"
+      description: "Just for testing"
+      preset:
+        modelLabel: "Test DUMMY Model"
+        endpoint: "Custom Workflows With Agents"
+        greeting: "Hello, I'm a dummy model"
+        promptPrefix: "You are a helpful assistant. You always end your response with THANKS. "
+        # model options
+        temperature: 0.999
+        top_p: 0.666
+        top_k: 18
+        frequency_penalty: 0
+        presence_penalty: 0
+        resendFiles: true
+        imageDetail: "high"
+    - name: "deepseek-coder"
+      label: "Generic Coder"
+      description: "Multilingual Coder"
+      preset:
+        modelLabel: "Generic Coder Model"
+        endpoint: "deepseek"
+        greeting: "Hello, how can I assist you today?"
+        promptPrefix: "You are a helpful assistant. You always end your response with THANKS. "
+        # model options
+        temperature: 0.7
+        top_p: 0.6
+        top_k: 35
+        frequency_penalty: 0
+        presence_penalty: 0
+        resendFiles: true
+        imageDetail: "high"
+    - name: "deepseek-chat"
+      label: "Generic Coder 2"
+      description: "Multilingual Coder 2"
+      preset:
+        modelLabel: "Generic Coder Model 2"
+        endpoint: "deepseek"
+        greeting: "Hello, how can I assist you today?"
+        promptPrefix: "You are a helpful assistant. You always end your response with THANKS. "
+        # model options
+        temperature: 0.7
+        top_p: 0.6
+        top_k: 35
+        frequency_penalty: 0
+        presence_penalty: 0
+        resendFiles: true
+        imageDetail: "high"
+
+
+
+
+# fileConfig:
+#   endpoints:
+#     assistants:
+#       fileLimit: 5
+#       fileSizeLimit: 10  # Maximum size for an individual file in MB
+#       totalSizeLimit: 50  # Maximum total size for all files in a single request in MB
+#       supportedMimeTypes:
+#         - "image/.*"
+#         - "application/pdf"
+#     openAI:
+#       disabled: true  # Disables file uploading to the OpenAI endpoint
+#     default:
+#       totalSizeLimit: 20
+#     YourCustomEndpointName:
+#       fileLimit: 2
+#       fileSizeLimit: 5
+#   serverFileSizeLimit: 100  # Global server file size limit in MB
+#   avatarSizeLimit: 2  # Limit for user avatar image size in MB
+# See the Custom Configuration Guide for more information:
+# https://docs.librechat.ai/install/configuration/custom_config.html
