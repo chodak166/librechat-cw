@@ -10,7 +10,8 @@ services:
     # image: ghcr.io/danny-avila/librechat:v0.7.1
     # image: ghcr.io/danny-avila/librechat-dev:latest
     # image: librechat
-    image: chodak166/librechat:0.7.2-b6837d6fef
+    # image: chodak166/librechat
+    image: chodak166/librechat:0.7.2-87386e7751
     restart: unless-stopped
     volumes:
     - type: bind
@@ -41,3 +42,8 @@ services:
     image: ghcr.io/danny-avila/librechat-rag-api-dev-lite:c2dda202162b588c629dde5cd823e001ac5c6200
     restart: unless-stopped
 
+  custom_workflows:
+    image: chodak166/ai-workflows:0.0.1
+    container_name: custom_workflows
+    volumes:
+      - ./volumes/workflows:/app/workflows

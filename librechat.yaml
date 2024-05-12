@@ -88,13 +88,13 @@ endpoints:
       titleConvo: true
       titleModel: 'deepseek-coder'
       modelDisplayLabel: 'deepseek'
-      iconURL: 'https://chat.deepseek.com/favicon.svg'
+      iconURL: '/assets/deepseek.svg'
 
     # Custom Workflows
     - name: 'Custom Workflows With Agents'
       apiKey: 'not_needed'
       # apiKey: 'user_provided'
-      baseURL: 'http://192.168.10.3:8000'
+      baseURL: 'http://custom_workflows:8000'
       models:
         default: [
           "mock-gpt-model",
@@ -104,6 +104,7 @@ endpoints:
       # titleModel: 'mock-gpt-model'
       # modelDisplayLabel: 'Custom Workflows'
       # dropParams: ['stop']
+      iconURL: '/assets/nixlab_nobg.svg'
 
     # Mistral AI Example
     - name: 'Mistral' # Unique name for the endpoint
@@ -163,50 +164,22 @@ endpoints:
       # see `curl https://openrouter.ai/api/v1/models |  jq` for available models
         default: [
           "openrouter/auto"
-          ,"nousresearch/nous-capybara-7b:free"
           ,"mistralai/mistral-7b-instruct:free"
           ,"openchat/openchat-7b:free"
-          ,"gryphe/mythomist-7b:free"
-          ,"undi95/toppy-m-7b:free"
-          ,"openrouter/cinematika-7b:free"
           ,"google/gemma-7b-it:free"
           ,"meta-llama/llama-3-8b-instruct:free"
-          ,"jetmoe/jetmoe-8b-chat:free"
-          ,"koboldai/psyfighter-13b-2"
-          ,"intel/neural-chat-7b"
-          ,"gryphe/mythomax-l2-13b:nitro"
-          ,"pygmalionai/mythalion-13b"
-          ,"xwin-lm/xwin-lm-70b"
-          ,"alpindale/goliath-120b"
-          ,"neversleep/noromaid-20b"
-          ,"gryphe/mythomist-7b"
-          ,"sophosympatheia/midnight-rose-70b"
-          ,"sao10k/fimbulvetr-11b-v2"
-          ,"neversleep/llama-3-lumimaid-8b"
-          ,"undi95/remm-slerp-l2-13b:extended"
-          ,"gryphe/mythomax-l2-13b:extended"
           ,"meta-llama/llama-3-8b-instruct:extended"
-          ,"neversleep/llama-3-lumimaid-8b:extended"
-          ,"mancer/weaver"
-          ,"nousresearch/nous-capybara-7b"
-          ,"meta-llama/codellama-34b-instruct"
-          ,"codellama/codellama-70b-instruct"
-          ,"phind/phind-codellama-34b"
+          ,"meta-llama/llama-3-8b-instruct"
+          ,"meta-llama/llama-3-70b-instruct"
           ,"open-orca/mistral-7b-openorca"
-          ,"teknium/openhermes-2-mistral-7b"
-          ,"undi95/remm-slerp-l2-13b"
-          ,"openrouter/cinematika-7b"
-          ,"01-ai/yi-34b-chat"
-          ,"01-ai/yi-34b"
-          ,"01-ai/yi-6b"
-          ,"togethercomputer/stripedhyena-nous-7b"
-          ,"togethercomputer/stripedhyena-hessian-7b"
           ,"mistralai/mixtral-8x7b"
-          ,"nousresearch/nous-hermes-yi-34b"
-          ,"nousresearch/nous-hermes-2-mixtral-8x7b-sft"
-          ,"nousresearch/nous-hermes-2-mistral-7b-dpo"
-          ,"snowflake/snowflake-arctic-instruct"
           ,"mistralai/mixtral-8x7b-instruct:nitro"
+          ,"mistralai/mixtral-8x7b-instruct"
+          ,"mistralai/mistral-7b-instruct:nitro"
+          ,"mistralai/mistral-tiny"
+          ,"mistralai/mistral-small"
+          ,"mistralai/mistral-medium"
+          ,"mistralai/mistral-large"
           ,"openai/gpt-3.5-turbo"
           ,"openai/gpt-3.5-turbo-0125"
           ,"openai/gpt-3.5-turbo-1106"
@@ -252,45 +225,9 @@ endpoints:
           ,"anthropic/claude-2.0:beta"
           ,"anthropic/claude-2.1:beta"
           ,"anthropic/claude-instant-1:beta"
-          ,"meta-llama/llama-2-13b-chat"
-          ,"meta-llama/llama-2-70b-chat"
-          ,"nousresearch/nous-hermes-llama2-13b"
-          ,"nousresearch/nous-capybara-34b"
-          ,"jondurbin/airoboros-l2-70b"
-          ,"jondurbin/bagel-34b"
-          ,"austism/chronos-hermes-13b"
-          ,"mistralai/mistral-7b-instruct"
-          ,"teknium/openhermes-2.5-mistral-7b"
-          ,"gryphe/mythomax-l2-13b"
-          ,"huggingfaceh4/zephyr-7b-beta"
-          ,"openchat/openchat-7b"
-          ,"undi95/toppy-m-7b"
-          ,"lizpreciatior/lzlv-70b-fp16-hf"
-          ,"jebcarter/psyfighter-13b"
-          ,"mistralai/mixtral-8x7b-instruct"
-          ,"cognitivecomputations/dolphin-mixtral-8x7b"
-          ,"neversleep/noromaid-mixtral-8x7b-instruct"
-          ,"nousresearch/nous-hermes-2-mixtral-8x7b-dpo"
-          ,"rwkv/rwkv-5-world-3b"
-          ,"recursal/rwkv-5-3b-ai-town"
-          ,"recursal/eagle-7b"
           ,"google/gemma-7b-it"
           ,"databricks/dbrx-instruct"
-          ,"meta-llama/llama-3-8b-instruct"
-          ,"meta-llama/llama-3-70b-instruct"
-          ,"microsoft/wizardlm-2-8x22b"
-          ,"microsoft/wizardlm-2-7b"
-          ,"mistralai/mixtral-8x22b"
-          ,"mistralai/mixtral-8x22b-instruct"
-          ,"lynn/soliloquy-l3"
-          ,"jetmoe/jetmoe-8b-chat"
-          ,"anthropic/claude-1"
-          ,"anthropic/claude-1.2"
-          ,"anthropic/claude-instant-1.0"
-          ,"anthropic/claude-instant-1.1"
           ,"huggingfaceh4/zephyr-7b-beta:free"
-          ,"meta-llama/llama-2-70b-chat:nitro"
-          ,"mistralai/mistral-7b-instruct:nitro"
           ,"google/gemma-7b-it:nitro"
           ,"undi95/toppy-m-7b:nitro"
           ,"microsoft/wizardlm-2-8x22b:nitro"
@@ -298,10 +235,6 @@ endpoints:
           ,"meta-llama/llama-3-70b-instruct:nitro"
           ,"haotian-liu/llava-13b"
           ,"nousresearch/nous-hermes-2-vision-7b"
-          ,"mistralai/mistral-tiny"
-          ,"mistralai/mistral-small"
-          ,"mistralai/mistral-medium"
-          ,"mistralai/mistral-large"
           ,"cohere/command"
           ,"cohere/command-r"
           ,"cohere/command-r-plus"

@@ -1,0 +1,14 @@
+version: "3.4"
+
+services:
+  api:
+    image: chodak166/ai-workflows:0.0.1
+    container_name: ai-workflows
+    ports:
+      - 8000:8000
+    restart: unless-stopped
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    volumes:
+      - ./volumes/workflows:/app/workflows
