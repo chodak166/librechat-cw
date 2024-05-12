@@ -1,6 +1,6 @@
 from groq import AsyncGroq
 from datetime import datetime
-from omniask import BaseWorkflow
+from wfrun import BaseWorkflow
 import os
 import asyncio
 
