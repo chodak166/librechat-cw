@@ -2,7 +2,7 @@
 # https://docs.librechat.ai/install/configuration/custom_config.html
 
 # Configuration version (required)
-version: 1.0.6
+version: 1.0.9
 
 # Cache settings: Set to true to enable caching
 cache: true
@@ -23,6 +23,7 @@ interface:
   modelSelect: true
   parameters: true
   presets: true
+
 
 # Example Registration Object Structure (optional)
 registration:
@@ -58,8 +59,8 @@ endpoints:
   custom:
     # Groq Example
     - name: 'groq'
-      # apiKey: '${GROQ_API_KEY}'
-      apiKey: 'user_provided'
+      apiKey: '${GROQ_API_KEY}'
+      # apiKey: 'user_provided'
       baseURL: 'https://api.groq.com/openai/v1/'
       models:
         default: [
@@ -76,8 +77,8 @@ endpoints:
 
     # DeepSeek
     - name: 'deepseek'
-      # apiKey: '${DEEPSEEK_API_KEY}'
-      apiKey: 'user_provided'
+      apiKey: '${DEEPSEEK_API_KEY}'
+      # apiKey: 'user_provided'
       baseURL: 'https://api.deepseek.com/'
       models:
         default: [
@@ -91,7 +92,7 @@ endpoints:
       iconURL: '/assets/deepseek.svg'
 
     # Custom Workflows
-    - name: 'Custom Workflows With Agents'
+    - name: 'Custom Workflows'
       apiKey: 'not_needed'
       # apiKey: 'user_provided'
       baseURL: 'http://custom_workflows:8000'
@@ -157,8 +158,8 @@ endpoints:
       # For `apiKey` and `baseURL`, you can use environment variables that you define.
       # recommended environment variables:
       # Known issue: you should not use `OPENROUTER_API_KEY` as it will then override the `openAI` endpoint to use OpenRouter as well.
-      # apiKey: '${OPENROUTER_KEY}'
-      apiKey: 'user_provided'
+      apiKey: '${OPENROUTER_KEY}'
+      # apiKey: 'user_provided'
       baseURL: 'https://openrouter.ai/api/v1'
       models:
       # see `curl https://openrouter.ai/api/v1/models |  jq` for available models
@@ -251,12 +252,264 @@ modelSpecs:
   enforce: false
   prioritize: false
   list:
-    - name: "mock-gpt-model"
+
+# From DeepSeek
+    - name: "deepseek-coder-generic"
+      label: "DeepSeek Coder"
+      description: "Coding and IT expert"
+      preset:
+        endpoint: "deepseek"
+        model: "deepseek-coder"
+        modelLabel: "DeepSeek Coder"
+        greeting: "Hello, how can I assist you today?"
+        promptPrefix: ""
+        # model options
+        temperature: 0.5
+        top_p: 0.6
+        top_k: 35
+        frequency_penalty: 0
+        presence_penalty: 0
+
+
+    - name: "deepseek-coder-solid"
+      label: "DeepSeek SOLID Coder"
+      description: "Coding and IT expert"
+      preset:
+        endpoint: "deepseek"
+        model: "deepseek-coder"
+        modelLabel: "DeepSeek SOLID coder"
+        promptPrefix: "Follow the instruction or continue the conversation. Remember to write clean, highly optimal, safe and readable code that follows SOLID rules. Output just the code with no comments. Add no or minimal explanation unless asked. Instruction:\n"
+        greeting: "Hello, how can I assist you today?"
+        # model options
+        temperature: 0.5
+        top_p: 0.5
+        top_k: 35
+        frequency_penalty: 0
+        presence_penalty: 0
+
+
+# From Groq
+    - name: "groq-mixtral-8x7b"
+      label: "Mixtral 8x7B"
+      description: "Mixtral 8x7B 32768 by Groq"
+      preset:
+        endpoint: "groq"
+        modelLabel: "Mixtral 8x7B"
+        model: "mixtral-8x7b-32768"
+        greeting: "Hello, how can I assist you today?"
+        promptPrefix: ""
+        # model options
+        temperature: 0.8
+        top_p: 0.7
+        top_k: 50
+        frequency_penalty: 0
+        presence_penalty: 0
+
+    - name: "groq-llama3-70b"
+      label: "Llama 3 70B"
+      description: "Llama 3 70B 8192 by Groq"
+      preset:
+        endpoint: "groq"
+        model: "llama3-70b-8192"
+        modelLabel: "Llama 3 70B"
+        promptPrefix: ""
+
+        greeting: "Hello, how can I assist you today?"
+        # model options
+        temperature: 0.8
+        top_p: 0.7
+        top_k: 50
+        frequency_penalty: 0
+        presence_penalty: 0
+
+    - name: "groq-solid-llama3-70b"
+      label: "Llama 3 70B SOLID Coder"
+      description: "Llama 3 70B coding assistant powered by Groq"
+      preset:
+        endpoint: "groq"
+        model: "llama3-70b-8192"
+        modelLabel: "Llama 3 SOLID Coder"
+        promptPrefix: "Follow the instruction or continue the conversation. Remember to write clean, highly optimal, safe and readable code that follows SOLID rules. Output just the code with no comments. Add no or minimal explanation unless asked. Instruction:\n"
+
+        greeting: "Hello, how can I assist you today?"
+        # model options
+        temperature: 0.5
+        top_p: 0.7
+        top_k: 35
+        frequency_penalty: 0
+        presence_penalty: 0
+
+    - name: "groq-crazy-llama3-70b"
+      label: "Llama 3 70B Creative assistant"
+      description: "Llama 3 70B creative assistant powered by Groq"
+      preset:
+        endpoint: "groq"
+        model: "llama3-70b-8192"
+        modelLabel: "Creative and innovative Llama 3"
+        promptPrefix: "Follow the instruction or continue the conversation. Be very creative and unique. Think out of the box. You can be funny sometimes. Instruction:\n"
+        greeting: "Hello, what are we going to create today?"
+        # model options
+        temperature: 1.5
+        top_p: 1
+        top_k: 60
+        frequency_penalty: 0
+        presence_penalty: 0
+
+
+ # From OpenRouter
+    - name: "ort-claude-3-opus"
+      label: "Claude 3 Opus"
+      description: "Claude 3 Opus from Anthropic"
+      preset:
+        endpoint: "OpenRouter"
+        model: "anthropic/claude-3-opus"
+        modelLabel: "Claude 3 Opus"
+        greeting: "Hello, how can I assist you today?"
+        promptPrefix: ""
+        # model options
+        temperature: 0.6
+        top_p: 0.7
+        top_k: 50
+        frequency_penalty: 0
+        presence_penalty: 0
+
+    - name: "ort-claude-3-opus-solid"
+      label: "Claude 3 Opus SOLID Coder"
+      description: "Claude 3 Opus that follows SOLID rules"
+      preset:
+        endpoint: "OpenRouter"
+        model: "anthropic/claude-3-opus"
+        modelLabel: "Claude 3 Opus SOLID coder"
+        greeting: "Hello, how can I assist you today?"
+        promptPrefix: "Follow the instruction or continue the conversation. Remember to write clean, highly optimal, safe and readable code that follows SOLID rules. Output just the code with no comments. Add no or minimal explanation unless asked. Instruction:\n"
+        # model options
+        temperature: 0.5
+        top_p: 0.5
+        top_k: 35
+        frequency_penalty: 0
+        presence_penalty: 0
+
+    - name: "ort-gpt-4"
+      label: "GPT-4"
+      description: "GPT-4 from OpenAI"
+      preset:
+        endpoint: "OpenRouter"
+        model: "openai/gpt-4"
+        modelLabel: "GPT-4"
+        greeting: "Hello, how can I assist you today?"
+        promptPrefix: ""
+        # model options
+        temperature: 0.8
+        top_p: 0.7
+        top_k: 50
+        frequency_penalty: 0
+        presence_penalty: 0
+
+    - name: "ort-gpt-4-turbo"
+      label: "GPT-4 Turbo"
+      description: "GPT-4 Turbo from OpenAI"
+      preset:
+        endpoint: "OpenRouter"
+        model: "openai/gpt-4-turbo"
+        modelLabel: "GPT-4 Turbo"
+        greeting: "Hello, how can I assist you today?"
+        promptPrefix: ""
+        # model options
+        temperature: 0.8
+        top_p: 0.7
+        top_k: 50
+        frequency_penalty: 0
+        presence_penalty: 0
+
+    - name: "ort-gpt-3.5-turbo"
+      label: "GPT-3.5 Turbo"
+      description: "GPT-3.5 Turbo from OpenAI"
+      preset:
+        endpoint: "OpenRouter"
+        model: "openai/gpt-3.5-turbo"
+        modelLabel: "GPT-3.5 Turbo"
+        greeting: "Hello, how can I assist you today?"
+        promptPrefix: ""
+        # model options
+        temperature: 0.7
+        top_p: 0.7
+        top_k: 50
+        frequency_penalty: 0
+        presence_penalty: 0
+
+    - name: "ort-gemini-1.5-pro"
+      label: "Gemini 1.5 Pro"
+      description: "Gemini 1.5 Pro (preview) from Google"
+      preset:
+        endpoint: "OpenRouter"
+        model: "google/gemini-pro-1.5"
+        modelLabel: "Gemini 1.5 Pro"
+        greeting: "Hello, how can I assist you today?"
+        promptPrefix: ""
+        # model options
+        temperature: 0.8
+        top_p: 0.7
+        top_k: 50
+        frequency_penalty: 0
+        presence_penalty: 0
+
+    - name: "ort-mixtral-8x22b-instruct"
+      label: "Mixtral 8x22B Instruct"
+      description: "Mixtral 8x22B Instruct from Mistral AI"
+      preset:
+        endpoint: "OpenRouter"
+        model: "mistralai/mixtral-8x22b-instruct"
+        modelLabel: "Mixtral 8x22B Instruct"
+        greeting: "Hello, how can I assist you today?"
+        promptPrefix: ""
+        # model options
+        temperature: 0.8
+        top_p: 0.7
+        top_k: 50
+        frequency_penalty: 0
+        presence_penalty: 0
+
+    - name: "ort-llama-3-70b-instruct"
+      label: "Llama 3 70B Instruct"
+      description: "Llama 3 70B Instruct from Meta"
+      preset:
+        endpoint: "OpenRouter"
+        model: "meta-llama/llama-3-70b-instruct"
+        modelLabel: "Llama 3 70B Instruct"
+        greeting: "Hello, how can I assist you today?"
+        promptPrefix: ""
+        # model options
+        temperature: 0.8
+        top_p: 0.7
+        top_k: 50
+        frequency_penalty: 0
+        presence_penalty: 0
+
+    - name: "ort-mixtral-8x22b-instruct"
+      label: "Mixtral 8x22B Instruct"
+      description: "Mixtral 8x22B Instruct from Mistral AI"
+      preset:
+        endpoint: "OpenRouter"
+        model: "mistralai/mixtral-8x22b-instruct"
+        modelLabel: "Mixtral 8x22B Instruct"
+        greeting: "Hello, how can I assist you today?"
+        promptPrefix: ""
+        # model options
+        temperature: 0.8
+        top_p: 0.7
+        top_k: 50
+        frequency_penalty: 0
+        presence_penalty: 0
+
+
+ # From local proxy (python workflows)
+    - name: "cw-echo-test-model"
       label: "Dummy workflow model"
       description: "Just for testing"
       preset:
-        modelLabel: "Test DUMMY Model"
-        endpoint: "Custom Workflows With Agents"
+        endpoint: "Custom Workflows"
+        name: "echo-test-model"
+        modelLabel: "Dummy workflow model"
         greeting: "Hello, I'm a dummy model"
         promptPrefix: "You are a helpful assistant. You always end your response with THANKS. "
         # model options
@@ -267,39 +520,6 @@ modelSpecs:
         presence_penalty: 0
         resendFiles: true
         imageDetail: "high"
-    - name: "deepseek-coder"
-      label: "Generic Coder"
-      description: "Multilingual Coder"
-      preset:
-        modelLabel: "Generic Coder Model"
-        endpoint: "deepseek"
-        greeting: "Hello, how can I assist you today?"
-        promptPrefix: "You are a helpful assistant. You always end your response with THANKS. "
-        # model options
-        temperature: 0.7
-        top_p: 0.6
-        top_k: 35
-        frequency_penalty: 0
-        presence_penalty: 0
-        resendFiles: true
-        imageDetail: "high"
-    - name: "deepseek-chat"
-      label: "Generic Coder 2"
-      description: "Multilingual Coder 2"
-      preset:
-        modelLabel: "Generic Coder Model 2"
-        endpoint: "deepseek"
-        greeting: "Hello, how can I assist you today?"
-        promptPrefix: "You are a helpful assistant. You always end your response with THANKS. "
-        # model options
-        temperature: 0.7
-        top_p: 0.6
-        top_k: 35
-        frequency_penalty: 0
-        presence_penalty: 0
-        resendFiles: true
-        imageDetail: "high"
-
 
 
 
