@@ -464,23 +464,6 @@ modelSpecs:
         frequency_penalty: 0
         presence_penalty: 0
 
-    - name: "ort-mixtral-8x22b-instruct"
-      label: "Mixtral 8x22B Instruct"
-      description: "Mixtral 8x22B Instruct from Mistral AI"
-      iconURL: "https://ai.nixlab.in/dashboard/img/icons/mistral.gif"
-      preset:
-        endpoint: "OpenRouter"
-        model: "mistralai/mixtral-8x22b-instruct"
-        modelLabel: "Mixtral 8x22B Instruct"
-        greeting: "Hello, how can I assist you today?"
-        promptPrefix: ""
-        # model options
-        temperature: 0.8
-        top_p: 0.7
-        top_k: 50
-        frequency_penalty: 0
-        presence_penalty: 0
-
     - name: "ort-llama-3-70b-instruct"
       label: "Llama 3 70B Instruct"
       description: "Llama 3 70B Instruct from Meta"
