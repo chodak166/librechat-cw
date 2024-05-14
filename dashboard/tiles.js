@@ -1,4 +1,5 @@
-var baseUrl = 'http://localhost:3080';
+// var baseUrl = 'http://localhost:3080';
+var baseUrl = 'https://ai.nixlab.in';
 
 var tiles = [
    {"url": baseUrl + "/c/new#modelSpec=ort-claude-3-opus", "image": "img/claude.jpg", "title": "Claude 3 Opus",
@@ -7,8 +8,8 @@ var tiles = [
    {"url": baseUrl + "/c/new#modelSpec=ort-gpt-4-turbo", "image": "img/gpt-4.jpg", "title": "GPT-4 Turbo",
    "description": "Upgraded GPT-4 with vision, function calling and large context window. $10/M in, $30/M out, 130k context."},
 
-   {"url": baseUrl + "/c/new#modelSpec=ort-gpt-4", "image": "img/gpt-4.jpg", "title": "GPT-4",
-   "description": "OpenAI's flagship model - a large-scale multimodal model capable of solving difficult problems. $30/M in, $60/M out, 8.2K context."},
+   {"url": baseUrl + "/c/new#modelSpec=ort-gpt-4o", "image": "img/gpt-4.jpg", "title": "GPT-4o",
+   "description": "OpenAI's flagship model - a large-scale multimodal model capable of solving difficult problems. $5/M in, $15/M out, 128K context."},
 
    {"url": baseUrl + "/c/new#modelSpec=ort-gpt-3.5-turbo", "image": "img/gpt-3.5.jpg", "title": "GPT-3.5 Turbo",
    "description": "OpenAI's fastest model optimized for chat and traditional tasks. $0.5/M in, $1.5/M out, 16k context."},

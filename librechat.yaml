@@ -396,14 +396,14 @@ modelSpecs:
         frequency_penalty: 0
         presence_penalty: 0
 
-    - name: "ort-gpt-4"
+    - name: "ort-gpt-4o"
       label: "GPT-4"
-      description: "GPT-4 from OpenAI"
+      description: "GPT-4o from OpenAI"
       iconURL: "https://ai.nixlab.in/dashboard/img/icons/gpt-4.gif"
       preset:
         endpoint: "OpenRouter"
-        model: "openai/gpt-4"
-        modelLabel: "GPT-4"
+        model: "openai/gpt-4o"
+        modelLabel: "GPT-4o"
         greeting: "Hello, how can I assist you today?"
         promptPrefix: ""
         # model options
