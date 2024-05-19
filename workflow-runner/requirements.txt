@@ -1,6 +1,11 @@
-
+bs4==0.0.2
+faiss_cpu==1.8.0
 fastapi==0.111.0
 groq==0.5.0
+langchain
+langchain-groq==0.1.4
+langchain-mistralai==0.1.7
+langchain-openai==0.1.7
 openai==1.28.1
 pydantic==2.7.1
 starlette==0.37.2

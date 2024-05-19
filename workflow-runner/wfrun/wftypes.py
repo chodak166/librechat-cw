@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import Optional, List
 
 class Message(BaseModel):
@@ -11,3 +11,6 @@ class ChatCompletionRequest(BaseModel):
     max_tokens: Optional[int] = 512
     temperature: Optional[float] = 0.1
     stream: Optional[bool] = False
+    conversation_id: Optional[str] = Field(default=None, alias="conversation_id")
+    remote_conversation_id: Optional[bool] = Field(default=None, alias="remote_conversation_id")
+

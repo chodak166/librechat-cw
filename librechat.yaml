@@ -98,12 +98,12 @@ endpoints:
       baseURL: 'http://custom_workflows:8000'
       models:
         default: [
-          "mock-gpt-model",
+          "llama-3-8b-groq-basic",
           ]
         fetch: true
-      titleConvo: false
-      # titleModel: 'mock-gpt-model'
-      # modelDisplayLabel: 'Custom Workflows'
+      titleConvo: true
+      titleModel: 'llama-3-8b-groq-basic'
+      modelDisplayLabel: 'Custom AI'
       # dropParams: ['stop']
       iconURL: '/assets/nixlab_nobg.svg'
 

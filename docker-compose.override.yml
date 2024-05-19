@@ -43,7 +43,18 @@ services:
     restart: unless-stopped
 
   custom_workflows:
-    image: chodak166/ai-workflows:0.0.1
+    image: chodak166/ai-workflows:latest
     container_name: custom_workflows
+    build:
+      context: ./workflow-runner
+      dockerfile: docker/Dockerfile
     volumes:
       - ./volumes/workflows:/app/workflows
+      - type: bind
+        source: ./.env
+        target: /app/.env
+
+      # dev:
+      # - type: bind
+      #   source: ./workflow-runner/wfrun/WorkflowApi.py
+      #   target: /app/wfrun/WorkflowApi.py
