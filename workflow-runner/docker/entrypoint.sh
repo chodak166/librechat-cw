@@ -30,6 +30,7 @@ while [ $run -eq 1 ]; do
   fi
 
   # Start the Python script using exec to replace the shell
+  exec python3 tree-clone-server.py &
   exec python3 app.py
 
   # If exec fails, we exit the loop

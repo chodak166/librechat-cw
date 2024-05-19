@@ -11,7 +11,7 @@ services:
     # image: ghcr.io/danny-avila/librechat-dev:latest
     # image: librechat
     # image: chodak166/librechat
-    image: chodak166/librechat:0.7.2-87386e7751
+    image: chodak166/librechat:0.7.2-5aa46d0e99
     restart: unless-stopped
     volumes:
     - type: bind
@@ -48,8 +48,12 @@ services:
     build:
       context: ./workflow-runner
       dockerfile: docker/Dockerfile
+    ports:
+      - 8001:8001
     volumes:
+      # - ./workflow-runner/workflows:/app/workflows # dev
       - ./volumes/workflows:/app/workflows
+      - ./volumes/ai-workspace:/app/ai-workspace
       - type: bind
         source: ./.env
         target: /app/.env
