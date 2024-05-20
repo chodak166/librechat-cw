@@ -1,22 +1,34 @@
-import time
 import asyncio
-from datetime import datetime
-
-from wfrun import BaseWorkflow
 
 import sys
 import os
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), 'src')))
 
-from ActiveParserChat import ActiveParserChat
-from SummaryActiveParser import SummaryActiveParser
+from langchain_groq import ChatGroq
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
-class Workflow(BaseWorkflow):
-  def __init__(self):
-    pass
+from workflows.lib.ActiveParserChat import ActiveParserChat
+from workflows.lib.parsers.SummaryActiveParser import SummaryActiveParser
+
+BASE_MODEL = "llama3-8b-8192"
+
+class Workflow:
 
   async def response_stream_generator(self, input, history):
-    chat = ActiveParserChat()
+
+    llm = ChatGroq(
+        temperature=1.0,
+        model=BASE_MODEL,
+    )
+
+    prompt = ChatPromptTemplate.from_messages(
+        [
+            ("system", "You are a helpful assistant. You follow human instructions strictly."),
+            MessagesPlaceholder(variable_name="chat_history"),
+            ("human", "{input}")
+        ]
+    )
+
+    chat = ActiveParserChat(llm, prompt, max_parser_feedbacks = 3)
     for item in history:
       chat.add_history_message(item.role, item.content)
 

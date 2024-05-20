@@ -51,8 +51,8 @@ services:
     ports:
       - 8001:8001
     volumes:
-      # - ./workflow-runner/workflows:/app/workflows # dev
-      - ./volumes/workflows:/app/workflows
+      - ./workflow-runner/workflows:/app/workflows # dev
+      # - ./volumes/workflows:/app/workflows
       - ./volumes/ai-workspace:/app/ai-workspace
       - type: bind
         source: ./.env

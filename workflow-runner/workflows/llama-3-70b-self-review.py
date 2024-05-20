@@ -1,36 +1,64 @@
-import time
 import asyncio
-from datetime import datetime
-
-from wfrun import BaseWorkflow
-
 import sys
 import os
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), 'src')))
 
-from MultiChatChan_llama3_70b_selfreview import MultiChatChain
+from langchain_groq import ChatGroq
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
-class Workflow(BaseWorkflow):
-  def __init__(self):
-    print("INIT")
-    self.config = {
-      "description": "Llama 3 70B self-reviewing multiple times",
-      "model": "llama-3-70b multiplied"
-    }
 
-  async def run_chat(self, input, history):
-    chat = MultiChatChain()
+from workflows.lib.CodeReviewMultiChat import CodeReviewMultiChat
+
+BASE_MODEL = "llama3-70b-8192"
+REVIEWER_MODEL = BASE_MODEL
+
+class Workflow:
+
+  async def response_stream_generator(self, input, history):
+
+    llm = ChatGroq(
+        model=BASE_MODEL,
+        temperature=1.2,
+    )
+
+    prompt = ChatPromptTemplate.from_messages(
+        [
+            ("system", "You are a software developer assistant. You follow instructions carefully."),
+            MessagesPlaceholder(variable_name="chat_history"),
+            ("human", "{input}")
+        ]
+    )
+
+    chat = CodeReviewMultiChat("Llama 3 Coder",llm, prompt)
+    self.add_reviewers(chat)
+
     for item in history:
       chat.add_history_message(item.role, item.content)
 
     stream = chat.stream(input)
     for chunk in stream:
-      # Yield control back to the event loop so that
-      # the synchronous generator does not block other tasks
-      await asyncio.sleep(0)
+      await asyncio.sleep(0)  # yield control back to the event loop
       yield chunk
+
+  def add_reviewers(self, chat):
+    name1 = "Llama 3 senior coder"
+    llm1 = ChatGroq(
+        temperature=0.2,
+        model=REVIEWER_MODEL,
+    )
+
+    prompt1 = ChatPromptTemplate.from_messages(
+      [
+          ("system", """You are a senior coding answer reviewer. You follow humans instructions strictly.
+            You optimize, fix and refactor provided answers with source code. Your code is modern and highly optimal.
+            You follow SOLID principles and good practices. You do not make comments or notes on the answer."""),
+          ("human", "Please refactor all code blocks in the ANSWER below. Repeat the whole ANSWER as it is, but update code blocks. Start with 'ANSWER:'. \n\nANSWER:\n\n{input}\n")
+      ]
+    )
+
+    chat.add_reviewer(name1, llm1, prompt1)
+    chat.add_reviewer(name1, llm1, prompt1)
 
   async def get_response_stream(self, history, options):
     input = history[-1].content
     history = history[:-1]
-    return self.run_chat(input, history)
+    return self.response_stream_generator(input, history)

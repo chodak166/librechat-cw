@@ -117,11 +117,14 @@ class WorkflowApi:
         }
         workflows = self.workflow_manager.list_workflows()
         for path, name in workflows:
+            if name.startswith("_"):
+                continue
             entry = {
                 "id": name,
                 "object": "model",
                 "owned_by": "unknown",
             }
             result["data"].append(entry)
+        result["data"] = sorted(result["data"], key=lambda x: x["id"])
         return result
 
