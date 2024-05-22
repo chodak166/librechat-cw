@@ -70,6 +70,8 @@ class CodeSaverActiveParser:
 
             extension = language if language else "txt"
             name_base = "unnamed"
+
+            # rename to run.sh or run_n.sh if no file path is given and it's shell script
             if language == "sh" or language == "bash":
                 extension = "sh"
                 name_base = "run"
@@ -86,7 +88,7 @@ class CodeSaverActiveParser:
     """
     Remove markdown characters like asterisks and underscores from the file name.
     """
-    return re.sub(r'[*_]', '', file_name)
+    return re.sub(r'[*`"\']', '', file_name)
 
   def write_code_blocks(self, file_contents: List[Tuple[str, str]]) -> None:
     """

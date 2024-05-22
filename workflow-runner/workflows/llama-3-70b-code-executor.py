@@ -9,14 +9,15 @@ from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
 from workflows.lib.ActiveParserChat import ActiveParserChat
-from workflows.lib.parsers.CodeSaverActiveParser import CodeSaverActiveParser
+from workflows.lib.parsers.CodeExecActiveParser import CodeExecActiveParser
 
 def get_random_string(length):
   letters = string.ascii_lowercase
   result_str = ''.join(random.choice(letters) for i in range(length))
   return result_str
 
-BASE_MODEL = "llama3-8b-8192"
+BASE_MODEL = "llama3-70b-8192"
+MAX_FEEDBACKS = 3
 
 class Workflow:
 
@@ -31,19 +32,19 @@ class Workflow:
     prompt = ChatPromptTemplate.from_messages(
         [
             ("system", """You are a helpful assistant.
-            You follow human instructions strictly.
-            You always write file names just before code blocks when writing code.
-            You write shell commands in single sh code block."""),
+            You always put relative file paths before code when writing code.
+            You message human with "execute <filepath>" if the code should be executed.
+            You do not assume some files already exist."""),
             MessagesPlaceholder(variable_name="chat_history"),
             ("human", "{input}")
         ]
     )
 
-    chat = ActiveParserChat(llm, prompt)
+    chat = ActiveParserChat(llm, prompt, MAX_FEEDBACKS)
     for item in history:
       chat.add_history_message(item.role, item.content)
 
-    p = CodeSaverActiveParser("/app/ai-workspace/" + session_id, session_id)
+    p = CodeExecActiveParser("/app/ai-workspace/" + session_id, session_id, MAX_FEEDBACKS)
     chat.add_active_parser(p)
 
     stream = chat.stream(input)
