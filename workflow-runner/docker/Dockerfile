@@ -18,6 +18,7 @@ RUN chmod +x /app/entrypoint.sh
 
 COPY . /app
 RUN mv /app/workflows /app/workflows.default
+RUN mv /app/dashboard /app/dashboard.default
 
 EXPOSE 8000
 

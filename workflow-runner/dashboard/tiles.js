@@ -1,8 +1,8 @@
-// var baseUrl = 'http://localhost:3080';
-var baseUrl = 'https://ai.nixlab.in';
+var baseUrl = 'http://localhost:3080';
+// var baseUrl = 'https://ai.nixlab.in';
 
 var tiles = [
-   {"url": baseUrl + "/c/new#modelSpec=ort-claude-3-opus", "image": "img/claude.jpg", "title": "Claude 3 Opus",
+   {"url": "/c/new#modelSpec=ort-claude-3-opus", "image": "img/claude.jpg", "title": "Claude 3 Opus",
    "description": "Claude 3 Opus is Anthropic's most powerful model for highly complex tasks ($15/M in, $75/1M out, 200k context)"},
 
    {"url": baseUrl + "/c/new#modelSpec=ort-gpt-4-turbo", "image": "img/gpt-4.jpg", "title": "GPT-4 Turbo",
@@ -50,16 +50,16 @@ var tiles = [
    {"url": baseUrl + "/c/new#modelSpec=deepseek-code-saver", "image": "img/deepseek-saver.jpg", "title": "DeepSeek Coder with file saving",
    "description": "Extra capabilities for saving and sharing files."},
 
-   {"url": baseUrl + "/c/new#modelSpec=llama-3-70b-code-saver", "image": "img/llama-saver.jpg", "title": "Llama 3 70B with file saving",
+   {"url": baseUrl + "/c/new#modelSpec=llama-code-saver", "image": "img/llama-saver.jpg", "title": "Llama 3 70B with file saving",
    "description": "Extra capabilities for saving and sharing files."},
 
-   {"url": baseUrl + "/c/new#modelSpec=gpt-4-code-saver", "image": "img/gpt-saver.jpg", "title": "GPT-4o with file saving",
+   {"url": baseUrl + "/c/new#modelSpec=gpt-code-saver", "image": "img/gpt-saver.jpg", "title": "GPT-4o with file saving",
    "description": "Extra capabilities for saving and sharing files."},
 
-   {"url": baseUrl + "/c/new#modelSpec=llama-3-70b-code-executor", "image": "img/llama-executor.jpg", "title": "Llama 3 70B with code execution",
+   {"url": baseUrl + "/c/new#modelSpec=llama-code-executor", "image": "img/llama-executor.jpg", "title": "Llama 3 70B with code execution",
    "description": "Extra capabilities for executing saved code blocks."},
 
-   {"url": baseUrl + "/c/new#modelSpec=gpt-4-code-executor", "image": "img/gpt-executor.jpg", "title": "GPT-4o with code execution",
+   {"url": baseUrl + "/c/new#modelSpec=gpt-code-executor", "image": "img/gpt-executor.jpg", "title": "GPT-4o with code execution",
    "description": "Extra capabilities for executing saved code blocks."},
 
   //  {"url": "#", "image": "img/generic-ai.jpg", "title": "Dummy chat model",

@@ -54,6 +54,7 @@ services:
     volumes:
       # - ./workflow-runner/workflows:/app/workflows # dev
       - ./volumes/workflows:/app/workflows
+      - ./volumes/dashboard:/app/dashboard
       - ./volumes/ai-workspace:/app/ai-workspace
       - type: bind
         source: ./.env

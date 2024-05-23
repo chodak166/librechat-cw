@@ -14,3 +14,4 @@ services:
       dockerfile: docker/Dockerfile
     volumes:
       - ./volumes/workflows:/app/workflows
+      - ./volumes/dashboard:/app/dashboard

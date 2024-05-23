@@ -13,11 +13,18 @@ trap cleanup INT TERM
 run=1
 cd /app
 
-# If workflow directory does not exist or is empty
+# If workflows directory does not exist or is empty
 if [ ! -d "workflows" ] || [ -z "$(ls -A workflows)" ]; then
   echo "No workflows found. Populating with defaults."
   mkdir -p /app/workflows 2>/dev/null ||:
   cp -r /app/workflows.default/* /app/workflows/
+fi
+
+# If dashboard directory does not exist or is empty
+if [ ! -d "dashboard" ] || [ -z "$(ls -A dashboard)" ]; then
+  echo "No dashboard found. Populating with defaults."
+  mkdir -p /app/dashboard 2>/dev/null ||:
+  cp -r /app/dashboard.default/* /app/dashboard/
 fi
 
 # Loop to start the workflow runner

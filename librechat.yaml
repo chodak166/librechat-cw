@@ -531,7 +531,7 @@ modelSpecs:
         greeting: "Hi! Let's code together with seniors! Be aware - we are expensive :)"
         promptPrefix: ""
 
-    - name: "llama-3-70b-code-saver"
+    - name: "llama-code-saver"
       label: "Llama Code Saver"
       description: "Workflow with code saving"
       iconURL: "${env:AI_WORKFLOWS_WEB_BASE}/img/icons/llama-saver.gif"
@@ -553,7 +553,7 @@ modelSpecs:
         greeting: "Hello, what can I do for you today?"
         promptPrefix: ""
 
-    - name: "gpt4-code-saver"
+    - name: "gpt-code-saver"
       label: "GPT-4o Code Saver"
       description: "Workflow with code saving"
       iconURL: "${env:AI_WORKFLOWS_WEB_BASE}/img/icons/gpt-saver.gif"
@@ -570,12 +570,12 @@ modelSpecs:
       iconURL: "${env:AI_WORKFLOWS_WEB_BASE}/img/icons/llama-executor.gif"
       preset:
         endpoint: "Custom Workflows"
-        model: "llama-code-executor"
+        model: "llama-3-70b-code-executor"
         modelLabel: "Llama Code Executor"
         greeting: "Hello, what can I do for you today?"
         promptPrefix: ""
 
-    - name: "gpt4-code-executor"
+    - name: "gpt-code-executor"
       label: "GPT-4o Code Executor"
       description: "Workflow with code saving"
       iconURL: "${env:AI_WORKFLOWS_WEB_BASE}/img/icons/gpt-executor.gif"
