@@ -5,7 +5,7 @@ from datetime import datetime
 import sys
 import os
 
-from langchain_groq import ChatGroq
+from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
 from workflows.lib.ActiveParserChat import ActiveParserChat
@@ -16,7 +16,7 @@ def get_random_string(length):
   result_str = ''.join(random.choice(letters) for i in range(length))
   return result_str
 
-BASE_MODEL = "llama3-70b-8192"
+BASE_MODEL = "openai/gpt-4o"
 MAX_FEEDBACKS = 3
 
 class Workflow:
@@ -24,18 +24,18 @@ class Workflow:
   async def response_stream_generator(self, input, history, options):
     session_id = self.get_session_id(options)
 
-    llm = ChatGroq(
-        # temperature=0.0,
-        temperature=0.8,
+    llm = ChatOpenAI(
+        api_key=os.environ["OPENROUTER_KEY"],
+        base_url="https://openrouter.ai/api/v1",
         model=BASE_MODEL,
+        temperature=0.6,
     )
 
     prompt = ChatPromptTemplate.from_messages(
         [
             ("system", """You are a helpful assistant.
 You always put relative file paths before code when writing code.
-You message human with "execute <filepath>" if the code should be executed.
-You do not assume some files already exist."""),
+You message human with "execute <filepath>" if the code should be executed."""),
             MessagesPlaceholder(variable_name="chat_history"),
             ("human", """Follow the instruction below.
 Before place relative file path before code. Code will be saved there. Do not assume some files already exist

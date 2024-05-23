@@ -30,6 +30,7 @@ while [ $run -eq 1 ]; do
   fi
 
   # Start the Python script using exec to replace the shell
+  exec python3 file-server.py dashboard ${AI_WORKFLOWS_DASHBOARD_PORT:-8002} &
   exec python3 tree-clone-server.py &
   exec python3 app.py
 

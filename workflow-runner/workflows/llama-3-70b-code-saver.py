@@ -24,16 +24,17 @@ class Workflow:
     session_id = self.get_session_id(options)
 
     llm = ChatGroq(
-        temperature=0.0,
+        # temperature=0.0,
+        temperature=0.8,
         model=BASE_MODEL,
     )
 
     prompt = ChatPromptTemplate.from_messages(
         [
             ("system", """You are a helpful assistant.
-            You follow human instructions strictly.
-            You always write file names just before code blocks when writing code.
-            You write shell commands in single sh code block."""),
+You follow human instructions strictly.
+You always write file names just before code blocks when writing code.
+You write shell commands in single sh code block."""),
             MessagesPlaceholder(variable_name="chat_history"),
             ("human", "{input}")
         ]

@@ -274,7 +274,7 @@ modelSpecs:
     - name: "deepseek-coder-solid"
       label: "DeepSeek SOLID Coder"
       description: "Coding and IT expert"
-      iconURL: "https://ai.nixlab.in/dashboard/img/icons/deepseek-solid.gif"
+      iconURL: "${env:AI_WORKFLOWS_WEB_BASE}/img/icons/deepseek-solid.gif"
       preset:
         endpoint: "deepseek"
         model: "deepseek-coder"
@@ -293,7 +293,7 @@ modelSpecs:
     - name: "groq-mixtral-8x7b"
       label: "Mixtral 8x7B"
       description: "Mixtral 8x7B 32768 by Groq"
-      iconURL: "https://ai.nixlab.in/dashboard/img/icons/mistral.gif"
+      iconURL: "${env:AI_WORKFLOWS_WEB_BASE}/img/icons/mistral.gif"
       preset:
         endpoint: "groq"
         modelLabel: "Mixtral 8x7B"
@@ -310,7 +310,7 @@ modelSpecs:
     - name: "groq-llama3-70b"
       label: "Llama 3 70B"
       description: "Llama 3 70B 8192 by Groq"
-      iconURL: "https://ai.nixlab.in/dashboard/img/icons/meta-llama-3.gif"
+      iconURL: "${env:AI_WORKFLOWS_WEB_BASE}/img/icons/meta-llama-3.gif"
       preset:
         endpoint: "groq"
         model: "llama3-70b-8192"
@@ -328,7 +328,7 @@ modelSpecs:
     - name: "groq-solid-llama3-70b"
       label: "Llama 3 70B SOLID Coder"
       description: "Llama 3 70B coding assistant powered by Groq"
-      iconURL: "https://ai.nixlab.in/dashboard/img/icons/llama-solid.gif"
+      iconURL: "${env:AI_WORKFLOWS_WEB_BASE}/img/icons/llama-solid.gif"
       preset:
         endpoint: "groq"
         model: "llama3-70b-8192"
@@ -346,7 +346,7 @@ modelSpecs:
     - name: "groq-crazy-llama3-70b"
       label: "Llama 3 70B Creative assistant"
       description: "Llama 3 70B creative assistant powered by Groq"
-      iconURL: "https://ai.nixlab.in/dashboard/img/icons/crazy-llama.gif"
+      iconURL: "${env:AI_WORKFLOWS_WEB_BASE}/img/icons/crazy-llama.gif"
       preset:
         endpoint: "groq"
         model: "llama3-70b-8192"
@@ -365,7 +365,7 @@ modelSpecs:
     - name: "ort-claude-3-opus"
       label: "Claude 3 Opus"
       description: "Claude 3 Opus from Anthropic"
-      iconURL: "https://ai.nixlab.in/dashboard/img/icons/claude.gif"
+      iconURL: "${env:AI_WORKFLOWS_WEB_BASE}/img/icons/claude.gif"
       preset:
         endpoint: "OpenRouter"
         model: "anthropic/claude-3-opus"
@@ -382,7 +382,7 @@ modelSpecs:
     - name: "ort-claude-3-opus-solid"
       label: "Claude 3 Opus SOLID Coder"
       description: "Claude 3 Opus that follows SOLID rules"
-      iconURL: "https://ai.nixlab.in/dashboard/img/icons/opus-coder.gif"
+      iconURL: "${env:AI_WORKFLOWS_WEB_BASE}/img/icons/opus-coder.gif"
       preset:
         endpoint: "OpenRouter"
         model: "anthropic/claude-3-opus"
@@ -397,9 +397,9 @@ modelSpecs:
         presence_penalty: 0
 
     - name: "ort-gpt-4o"
-      label: "GPT-4"
+      label: "GPT-4o"
       description: "GPT-4o from OpenAI"
-      iconURL: "https://ai.nixlab.in/dashboard/img/icons/gpt-4.gif"
+      iconURL: "${env:AI_WORKFLOWS_WEB_BASE}/img/icons/gpt-4.gif"
       preset:
         endpoint: "OpenRouter"
         model: "openai/gpt-4o"
@@ -416,7 +416,7 @@ modelSpecs:
     - name: "ort-gpt-4-turbo"
       label: "GPT-4 Turbo"
       description: "GPT-4 Turbo from OpenAI"
-      iconURL: "https://ai.nixlab.in/dashboard/img/icons/gpt-4.gif"
+      iconURL: "${env:AI_WORKFLOWS_WEB_BASE}/img/icons/gpt-4.gif"
       preset:
         endpoint: "OpenRouter"
         model: "openai/gpt-4-turbo"
@@ -433,7 +433,7 @@ modelSpecs:
     - name: "ort-gpt-3.5-turbo"
       label: "GPT-3.5 Turbo"
       description: "GPT-3.5 Turbo from OpenAI"
-      iconURL: "https://ai.nixlab.in/dashboard/img/icons/gpt-3.5.gif"
+      iconURL: "${env:AI_WORKFLOWS_WEB_BASE}/img/icons/gpt-3.5.gif"
       preset:
         endpoint: "OpenRouter"
         model: "openai/gpt-3.5-turbo"
@@ -450,7 +450,7 @@ modelSpecs:
     - name: "ort-gemini-1.5-pro"
       label: "Gemini 1.5 Pro"
       description: "Gemini 1.5 Pro (preview) from Google"
-      iconURL: "https://ai.nixlab.in/dashboard/img/icons/google-gemini.gif"
+      iconURL: "${env:AI_WORKFLOWS_WEB_BASE}/img/icons/google-gemini.gif"
       preset:
         endpoint: "OpenRouter"
         model: "google/gemini-pro-1.5"
@@ -467,7 +467,7 @@ modelSpecs:
     - name: "ort-llama-3-70b-instruct"
       label: "Llama 3 70B Instruct"
       description: "Llama 3 70B Instruct from Meta"
-      iconURL: "https://ai.nixlab.in/dashboard/img/icons/meta-llama-3.gif"
+      iconURL: "${env:AI_WORKFLOWS_WEB_BASE}/img/icons/meta-llama-3.gif"
       preset:
         endpoint: "OpenRouter"
         model: "meta-llama/llama-3-70b-instruct"
@@ -484,7 +484,7 @@ modelSpecs:
     - name: "ort-mixtral-8x22b-instruct"
       label: "Mixtral 8x22B Instruct"
       description: "Mixtral 8x22B Instruct from Mistral AI"
-      iconURL: "https://ai.nixlab.in/dashboard/img/icons/mistral.gif"
+      iconURL: "${env:AI_WORKFLOWS_WEB_BASE}/img/icons/mistral.gif"
       preset:
         endpoint: "OpenRouter"
         model: "mistralai/mixtral-8x22b-instruct"
@@ -498,7 +498,6 @@ modelSpecs:
         frequency_penalty: 0
         presence_penalty: 0
 
-
  # From local proxy (python workflows)
     - name: "cw-echo-test-model"
       label: "Dummy workflow model"
@@ -508,16 +507,84 @@ modelSpecs:
         name: "echo-test-model"
         modelLabel: "Dummy workflow model"
         greeting: "Hello, I'm a dummy model"
-        promptPrefix: "You are a helpful assistant. You always end your response with THANKS. "
-        # model options
-        temperature: 0.999
-        top_p: 0.666
-        top_k: 18
-        frequency_penalty: 0
-        presence_penalty: 0
-        resendFiles: true
-        imageDetail: "high"
+        promptPrefix: ""
 
+    - name: "coding-duo"
+      label: "Coding Duo"
+      description: "Two-model code generation"
+      iconURL: "${env:AI_WORKFLOWS_WEB_BASE}/img/icons/llama-deepseek-01.gif"
+      preset:
+        endpoint: "Custom Workflows"
+        model: "coding-duo"
+        modelLabel: "Coding Duo"
+        greeting: "Hi! Let's code together!"
+        promptPrefix: ""
+
+    - name: "senior-coding-duo"
+      label: "Senior Coding Duo"
+      description: "Two-model code generation"
+      iconURL: "${env:AI_WORKFLOWS_WEB_BASE}/img/icons/coding-duo-02.gif"
+      preset:
+        endpoint: "Custom Workflows"
+        model: "senior-coding-duo"
+        modelLabel: "Senior Coding Duo"
+        greeting: "Hi! Let's code together with seniors! Be aware - we are expensive :)"
+        promptPrefix: ""
+
+    - name: "llama-3-70b-code-saver"
+      label: "Llama Code Saver"
+      description: "Workflow with code saving"
+      iconURL: "${env:AI_WORKFLOWS_WEB_BASE}/img/icons/llama-saver.gif"
+      preset:
+        endpoint: "Custom Workflows"
+        model: "llama-3-70b-code-saver"
+        modelLabel: "Llama Code Saver"
+        greeting: "Hello, what can I do for you today?"
+        promptPrefix: ""
+
+    - name: "deepseek-code-saver"
+      label: "DeepSeek Code Saver"
+      description: "Workflow with code saving"
+      iconURL: "${env:AI_WORKFLOWS_WEB_BASE}/img/icons/deepseek-saver.gif"
+      preset:
+        endpoint: "Custom Workflows"
+        model: "deepseek-code-saver"
+        modelLabel: "DeepSeek Code Saver"
+        greeting: "Hello, what can I do for you today?"
+        promptPrefix: ""
+
+    - name: "gpt4-code-saver"
+      label: "GPT-4o Code Saver"
+      description: "Workflow with code saving"
+      iconURL: "${env:AI_WORKFLOWS_WEB_BASE}/img/icons/gpt-saver.gif"
+      preset:
+        endpoint: "Custom Workflows"
+        model: "gpt-4-code-saver"
+        modelLabel: "GPT-4o Code Saver"
+        greeting: "Hello, what can I do for you today?"
+        promptPrefix: ""
+
+    - name: "llama-code-executor"
+      label: "Llama Code Executor"
+      description: "Workflow with code saving"
+      iconURL: "${env:AI_WORKFLOWS_WEB_BASE}/img/icons/llama-executor.gif"
+      preset:
+        endpoint: "Custom Workflows"
+        model: "llama-code-executor"
+        modelLabel: "Llama Code Executor"
+        greeting: "Hello, what can I do for you today?"
+        promptPrefix: ""
+
+    - name: "gpt4-code-executor"
+      label: "GPT-4o Code Executor"
+      description: "Workflow with code saving"
+      iconURL: "${env:AI_WORKFLOWS_WEB_BASE}/img/icons/gpt-executor.gif"
+      preset:
+        endpoint: "Custom Workflows"
+        model: "gpt-4-code-executor"
+        modelLabel: "GPT-4o Code Executor"
+        greeting: "Hello, what can I do for you today?"
+        promptPrefix: ""
 
 
 # fileConfig:

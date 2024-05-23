@@ -41,14 +41,29 @@ var tiles = [
    {"url": baseUrl + "/c/new#modelSpec=ort-claude-3-opus-solid", "image": "img/opus-coder.jpg", "title": "Claude 3 Opus SOLID Coder",
    "description": "Claude 3 Opus instructed to give clean code with little explanation and no comments."},
 
-   {"url": "", "image": "img/llama-deepseek-01.jpg", "title": "Advanced Coding Duo",
-   "description": "AutoGen workflow with DeepSeek Coder and Llama 3 70B code review."},
+   {"url": baseUrl + "/c/new#modelSpec=coding-duo", "image": "img/llama-deepseek-01.jpg", "title": "Advanced Coding Duo",
+   "description": "Workflow with DeepSeek Coder code reviewed by Llama 3 70B."},
 
-   {"url": "#", "image": "img/coding-duo-02.jpg", "title": "Advanced Senior Coding Duo",
-   "description": "Advanced and expensive workflow with Claude 3 Opus code reviewed by GPT-4 Turbo."},
+   {"url": baseUrl + "/c/new#modelSpec=senior-coding-duo", "image": "img/coding-duo-02.jpg", "title": "Advanced Senior Coding Duo",
+   "description": "Advanced workflow with Claude 3 Opus code reviewed by GPT-4 Turbo."},
 
-   {"url": "#", "image": "img/generic-ai.jpg", "title": "Dummy chat model",
-   "description": "Chat for testing custom setup."},
+   {"url": baseUrl + "/c/new#modelSpec=deepseek-code-saver", "image": "img/deepseek-saver.jpg", "title": "DeepSeek Coder with file saving",
+   "description": "Extra capabilities for saving and sharing files."},
+
+   {"url": baseUrl + "/c/new#modelSpec=llama-3-70b-code-saver", "image": "img/llama-saver.jpg", "title": "Llama 3 70B with file saving",
+   "description": "Extra capabilities for saving and sharing files."},
+
+   {"url": baseUrl + "/c/new#modelSpec=gpt-4-code-saver", "image": "img/gpt-saver.jpg", "title": "GPT-4o with file saving",
+   "description": "Extra capabilities for saving and sharing files."},
+
+   {"url": baseUrl + "/c/new#modelSpec=llama-3-70b-code-executor", "image": "img/llama-executor.jpg", "title": "Llama 3 70B with code execution",
+   "description": "Extra capabilities for executing saved code blocks."},
+
+   {"url": baseUrl + "/c/new#modelSpec=gpt-4-code-executor", "image": "img/gpt-executor.jpg", "title": "GPT-4o with code execution",
+   "description": "Extra capabilities for executing saved code blocks."},
+
+  //  {"url": "#", "image": "img/generic-ai.jpg", "title": "Dummy chat model",
+  //  "description": "Chat for testing custom setup."},
 
   // {"url": baseUrl + "/c/new#modelSpec=", "image": "img/llama-robo.jpg", "title": "Title 1", "description": "Description 1"},
 ];
