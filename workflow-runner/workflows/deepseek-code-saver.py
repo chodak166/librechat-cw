@@ -9,7 +9,7 @@ from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
 from workflows.lib.ActiveParserChat import ActiveParserChat
-from workflows.lib.parsers.CodeSaverActiveParser import CodeSaverActiveParser
+from workflows.lib.parsers.LiveCodeActiveParser import LiveCodeActiveParser
 
 def get_random_string(length):
   letters = string.ascii_lowercase
@@ -17,6 +17,7 @@ def get_random_string(length):
   return result_str
 
 BASE_MODEL = "deepseek-coder"
+MAX_FEEDBACKS = 3
 
 class Workflow:
 
@@ -27,17 +28,39 @@ class Workflow:
         api_key=os.environ["DEEPSEEK_API_KEY"],
         base_url="https://api.deepseek.com/",
         model=BASE_MODEL,
-        temperature=0.6,
+        temperature=0.8,
     )
 
     prompt = ChatPromptTemplate.from_messages(
         [
-            ("system", """You are a helpful assistant.
-You follow human instructions strictly.
-You always write file names just before code blocks when writing code.
-You write shell commands in single sh code block."""),
+            ("system", """You are a helpful assistant. You write texts only between [<tag>] and [</tag>] tags."""),
             MessagesPlaceholder(variable_name="chat_history"),
-            ("human", "{input}")
+            ("human", """Follow the instruction after INSTRUCTION tag.
+Write response in this format:
+```
+[<response>]
+
+[<file_path>]./file/path.extension[</file_path>]
+[<code>]
+source code
+[</code>]
+[<execute>]false[</execute>]
+[<explanation>]
+explanation
+[</explanation>]
+
+[<file_path>]./script_name.sh[</file_path>]
+[<code>]
+commands
+[</code>]
+[<execute>]true[</execute>]
+[<explanation>]
+explanation
+[</explanation>]
+
+[</response>]
+```
+INSTRUCTION: {input}""")
         ]
     )
 
@@ -45,7 +68,7 @@ You write shell commands in single sh code block."""),
     for item in history:
       chat.add_history_message(item.role, item.content)
 
-    p = CodeSaverActiveParser("/app/ai-workspace/" + session_id, session_id)
+    p = LiveCodeActiveParser( output_dir="/app/ai-workspace/" + session_id, session_id=session_id, enable_execution=False, max_parser_feedbacks=MAX_FEEDBACKS)
     chat.add_active_parser(p)
 
     stream = chat.stream(input)

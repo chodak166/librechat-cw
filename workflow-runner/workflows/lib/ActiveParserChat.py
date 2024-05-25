@@ -16,11 +16,14 @@ class ActiveParserChat(LangchainChatBase):
     def __init__(self, llm, prompt, max_parser_feedbacks = 3):
         super().__init__(llm, prompt)
         self.active_parsers = []
+        self.live_active_parsers = []
         self.max_parser_feedbacks = max_parser_feedbacks
         self.input_chain = prompt | llm | StrOutputParser()
 
     def add_active_parser(self, parser):
         self.active_parsers.append(parser)
+        if hasattr(parser, "parse_live"):
+            self.live_active_parsers.append(parser)
 
 
     def stream(self, input, feedback_count = 0) -> Generator[str, None, None]:
@@ -32,8 +35,18 @@ class ActiveParserChat(LangchainChatBase):
         response = ""
         stream = self.input_chain.stream({"input": input, "chat_history": self.chat_history})
         for chunk in stream:
-            yield chunk
             response += chunk
+            value = chunk
+            for parser in self.live_active_parsers:
+                value = parser.parse_live(chunk)
+
+            if value != "":
+                yield value
+
+        for parser in self.live_active_parsers:
+            value = parser.parse_live("[<EOM>]")
+            if value is not "":
+                yield value
 
         self.add_history_message("assistant", response)
 

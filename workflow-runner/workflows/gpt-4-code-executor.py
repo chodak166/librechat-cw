@@ -9,7 +9,7 @@ from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
 from workflows.lib.ActiveParserChat import ActiveParserChat
-from workflows.lib.parsers.CodeExecActiveParser import CodeExecActiveParser
+from workflows.lib.parsers.LiveCodeActiveParser import LiveCodeActiveParser
 
 def get_random_string(length):
   letters = string.ascii_lowercase
@@ -33,13 +33,33 @@ class Workflow:
 
     prompt = ChatPromptTemplate.from_messages(
         [
-            ("system", """You are a helpful assistant.
-You always put relative file paths before code when writing code.
-You message human with "execute <filepath>" if the code should be executed."""),
+            ("system", """You are a helpful assistant. You write texts only between [<tag>] and [</tag>] tags."""),
             MessagesPlaceholder(variable_name="chat_history"),
-            ("human", """Follow the instruction below.
-Before place relative file path before code. Code will be saved there. Do not assume some files already exist
-To execute code, write 'execute <filepath>' at the end of your response.
+            ("human", """Follow the instruction after INSTRUCTION tag.
+Write response in this format:
+```
+[<response>]
+
+[<file_path>]./file/path.extension[</file_path>]
+[<code>]
+source code
+[</code>]
+[<execute>]false[</execute>]
+[<explanation>]
+explanation
+[</explanation>]
+
+[<file_path>]./script_name.sh[</file_path>]
+[<code>]
+commands
+[</code>]
+[<execute>]true[</execute>]
+[<explanation>]
+explanation
+[</explanation>]
+
+[</response>]
+```
 INSTRUCTION: {input}""")
         ]
     )
@@ -48,7 +68,7 @@ INSTRUCTION: {input}""")
     for item in history:
       chat.add_history_message(item.role, item.content)
 
-    p = CodeExecActiveParser("/app/ai-workspace/" + session_id, session_id, MAX_FEEDBACKS)
+    p = LiveCodeActiveParser( output_dir="/app/ai-workspace/" + session_id, session_id=session_id, enable_execution=True, max_parser_feedbacks=MAX_FEEDBACKS)
     chat.add_active_parser(p)
 
     stream = chat.stream(input)

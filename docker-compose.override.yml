@@ -52,8 +52,8 @@ services:
       - 8001:8001
       - 8002:8002
     volumes:
-      # - ./workflow-runner/workflows:/app/workflows # dev
-      - ./volumes/workflows:/app/workflows
+      - ./workflow-runner/workflows:/app/workflows # dev
+      # - ./volumes/workflows:/app/workflows
       - ./volumes/dashboard:/app/dashboard
       - ./volumes/ai-workspace:/app/ai-workspace
       - type: bind
