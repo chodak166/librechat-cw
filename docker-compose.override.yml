@@ -13,6 +13,8 @@ services:
     # image: chodak166/librechat
     image: chodak166/librechat:0.7.2-883a769f35
     restart: unless-stopped
+    ports:
+      - 3080:3080
     volumes:
     - type: bind
       source: ./librechat.yaml
