@@ -1,5 +1,5 @@
 var baseUrl = 'http://localhost:3080';
-// var baseUrl = 'https://ai.nixlab.in';
+// var baseUrl = '';
 
 var tiles = [
    {"url": "/c/new#modelSpec=ort-claude-3-opus", "image": "img/claude.jpg", "title": "Claude 3 Opus",
