@@ -1,6 +1,6 @@
 # LibreChat with Custom Workflows
 
-Run LangChan, AutoGen or any LLM chat in self-hosted client.
+Run LangChain, AutoGen or any LLM chat in self-hosted client.
 
 ## Quick start
 
