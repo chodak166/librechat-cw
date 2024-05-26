@@ -2,7 +2,7 @@ var baseUrl = 'http://localhost:3080';
 // var baseUrl = '';
 
 var tiles = [
-   {"url": "/c/new#modelSpec=ort-claude-3-opus", "image": "img/claude.jpg", "title": "Claude 3 Opus",
+   {"url": baseUrl + "/c/new#modelSpec=ort-claude-3-opus", "image": "img/claude.jpg", "title": "Claude 3 Opus",
    "description": "Claude 3 Opus is Anthropic's most powerful model for highly complex tasks ($15/M in, $75/1M out, 200k context)"},
 
    {"url": baseUrl + "/c/new#modelSpec=ort-gpt-4-turbo", "image": "img/gpt-4.jpg", "title": "GPT-4 Turbo",
