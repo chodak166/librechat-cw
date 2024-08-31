@@ -11,7 +11,8 @@ services:
     # image: ghcr.io/danny-avila/librechat-dev:latest
     # image: librechat
     # image: chodak166/librechat
-    image: chodak166/librechat:0.7.2-883a769f35
+    # image: chodak166/librechat:0.7.2-883a769f35
+    image: chodak166/librechat:v0.7.5-rc-4f5e66fe
     restart: unless-stopped
     ports:
       - 3080:3080
@@ -41,7 +42,7 @@ services:
       - ./volumes/vectordb/pgdata2:/var/lib/postgresql/data
 
   rag_api:
-    image: ghcr.io/danny-avila/librechat-rag-api-dev-lite:c2dda202162b588c629dde5cd823e001ac5c6200
+    image: ghcr.io/danny-avila/librechat-rag-api-dev-lite:de369c22d87dae5ded585ce1ba67e03dbe609c6b
     restart: unless-stopped
 
   custom_workflows:
