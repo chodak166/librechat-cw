@@ -12,7 +12,7 @@ services:
     # image: librechat
     # image: chodak166/librechat
     # image: chodak166/librechat:0.7.2-883a769f35
-    image: chodak166/librechat:v0.7.5-rc-4f5e66fe
+    image: chodak166/librechat:v0.7.5-rc2
     restart: unless-stopped
     ports:
       - 3080:3080
