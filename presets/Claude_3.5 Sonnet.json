@@ -1,0 +1,15 @@
+{
+    "presetId": "262811a6-1a61-430a-bd36-75da43deb45c",
+    "model": "anthropic/claude-3.5-sonnet",
+    "chatGptLabel": "Claude 3.5 Sonnet",
+    "promptPrefix": null,
+    "temperature": 0.85,
+    "top_p": 0.85,
+    "presence_penalty": 0,
+    "frequency_penalty": 0,
+    "resendFiles": true,
+    "imageDetail": "auto",
+    "endpoint": "OpenRouter",
+    "endpointType": "custom",
+    "title": "Claude 3.5 Sonnet"
+}

@@ -1,0 +1,15 @@
+{
+    "presetId": "47238caf-f8b7-4691-9b6a-5ad023c8b7cb",
+    "model": "openai/o1-mini",
+    "chatGptLabel": "OpenAI o1-mini",
+    "promptPrefix": null,
+    "temperature": 0.85,
+    "top_p": 0.85,
+    "presence_penalty": 0,
+    "frequency_penalty": 0,
+    "resendFiles": true,
+    "imageDetail": "auto",
+    "endpoint": "OpenRouter",
+    "endpointType": "custom",
+    "title": "OpenAI o1-mini"
+}

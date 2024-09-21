@@ -1,0 +1,15 @@
+{
+    "presetId": "d72c69ac-44db-4da5-ad50-fb1ced1db165",
+    "model": "mistralai/pixtral-12b:free",
+    "chatGptLabel": "Pixtral Free",
+    "promptPrefix": null,
+    "temperature": 0.85,
+    "top_p": 0.85,
+    "presence_penalty": 0,
+    "frequency_penalty": 0,
+    "resendFiles": true,
+    "imageDetail": "auto",
+    "endpoint": "OpenRouter",
+    "endpointType": "custom",
+    "title": "Pixtral Free"
+}

@@ -1,0 +1,15 @@
+{
+    "presetId": "c681fc41-248e-4656-b076-c1e334231561",
+    "model": "anthropic/claude-3.5-sonnet",
+    "chatGptLabel": "Claude 3.5 Sonnet SOLID",
+    "promptPrefix": "Write clean, highly optimal, safe and readable code that follows SOLID rules. Use most modern best practices. Output just the code with no comments. Add no explanation unless asked.",
+    "temperature": 0.85,
+    "top_p": 0.85,
+    "presence_penalty": 0,
+    "frequency_penalty": 0,
+    "resendFiles": true,
+    "imageDetail": "auto",
+    "endpoint": "OpenRouter",
+    "endpointType": "custom",
+    "title": "Claude 3.5 Sonnet SOLID"
+}

@@ -1,0 +1,15 @@
+{
+    "presetId": "aaeebbf1-6368-47f1-b1ae-4613aeb37da4",
+    "model": "deepseek-coder",
+    "chatGptLabel": "DeepSeek Coder SOLID",
+    "promptPrefix": "Write clean, highly optimal, safe and readable code that follows SOLID rules. Use most modern best practices. Output just the code with no comments. Add no explanation unless asked.",
+    "temperature": 0.85,
+    "top_p": 0.85,
+    "presence_penalty": 0,
+    "frequency_penalty": 0,
+    "resendFiles": true,
+    "imageDetail": "auto",
+    "endpoint": "deepseek",
+    "endpointType": "custom",
+    "title": "DeepSeek Coder SOLID"
+}
